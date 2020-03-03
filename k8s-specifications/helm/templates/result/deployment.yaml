@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: result
+    type: blue
+    build: "{{ .Values.BuildID }}"
+  name: result-{{ .Values.BuildID }}
+  namespace: vote
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: result-{{ .Values.BuildID }}
+  template:
+    metadata:
+      labels:
+        app: result-{{ .Values.BuildID }}
+        app-prefix: result
+        build: "{{ .Values.BuildID }}"
+        type: blue
+    spec:
+      containers:
+      - image: {{.Values.Registry}}/dockersamples/examplevotingapp_result:{{ .Values.BuildID }}
+        name: result
+        ports:
+        - containerPort: 80
+          name: result

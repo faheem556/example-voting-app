@@ -2,15 +2,16 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    app: vote
-  name: vote
+    app: vote-lb
+  name: vote-lb
   namespace: vote
 spec:
   type: LoadBalancer
   ports:
-  - name: "vote-service"
+  - name: "vote-lb"
     port: 80
     targetPort: 80
   selector:
-    app: vote
+    type: green
+    app-prefix: vote
   

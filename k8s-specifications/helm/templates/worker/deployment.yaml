@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: worker
+    build: "{{ .Values.BuildID }}"
+  name: worker-{{ .Values.BuildID }}
+  namespace: vote
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: worker-{{ .Values.BuildID }}
+  template:
+    metadata:
+      labels:
+        app: worker-{{ .Values.BuildID }}
+        app-prefix: worker
+        build: "{{ .Values.BuildID }}"
+        type: blue
+    spec:
+      containers:
+      - image: {{.Values.Registry}}/dockersamples/examplevotingapp_worker:{{ .Values.BuildID }}
+        name: worker

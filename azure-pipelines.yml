@@ -1,0 +1,26 @@
+trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  REGISTRY: aksdemobb.azurecr.io
+
+stages:
+- stage: Build
+  displayName: Build stage
+  jobs:  
+  - job: Build
+    displayName: Build
+    steps:
+    - task: Docker@2
+      inputs:
+        containerRegistry: 'aks-demo-acr'
+        command: 'login'
+        addPipelineData: false
+
+    - bash: |
+        docker-compose build
+        docker-compose push
+      displayName: Build and push an image to container registry
