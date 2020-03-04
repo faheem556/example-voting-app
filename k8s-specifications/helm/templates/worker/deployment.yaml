@@ -10,12 +10,12 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: worker-{{ .Values.BuildID }}
+      app: worker
+      build: "{{ .Values.BuildID }}"
   template:
     metadata:
       labels:
-        app: worker-{{ .Values.BuildID }}
-        app-prefix: worker
+        app: worker
         build: "{{ .Values.BuildID }}"
         type: blue
     spec:

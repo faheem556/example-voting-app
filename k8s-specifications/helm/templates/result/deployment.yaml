@@ -11,12 +11,12 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: result-{{ .Values.BuildID }}
+      app: result
+      build: "{{ .Values.BuildID }}"
   template:
     metadata:
       labels:
-        app: result-{{ .Values.BuildID }}
-        app-prefix: result
+        app: result
         build: "{{ .Values.BuildID }}"
         type: blue
     spec:

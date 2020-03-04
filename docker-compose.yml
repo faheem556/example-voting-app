@@ -3,7 +3,7 @@ version: "3"
 services:
   vote:
     build: ./vote
-    image: ${REGISTRY:-aksdemobb.azurecr.io}/dockersamples/examplevotingapp_result:${BUILD_BUILDID:-latest}
+    image: ${REGISTRY:-aksdemobb.azurecr.io}/dockersamples/examplevotingapp_vote:${BUILD_BUILDID:-latest}
     command: python app.py
     volumes:
      - ./vote:/app
@@ -15,7 +15,7 @@ services:
 
   result:
     build: ./result
-    image: ${REGISTRY:-aksdemobb.azurecr.io}/dockersamples/examplevotingapp_vote:${BUILD_BUILDID:-latest}
+    image: ${REGISTRY:-aksdemobb.azurecr.io}/dockersamples/examplevotingapp_result:${BUILD_BUILDID:-latest}
     command: nodemon server.js
     volumes:
       - ./result:/app
