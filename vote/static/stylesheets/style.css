@@ -28,13 +28,13 @@ button i{
 }
 
 button.a{
-  /* background-color: #e4404e; */
-  background-color: #1aaaf8;
+  background-color: #e4404e;
+  /* background-color: #1aaaf8; */
 }
 
 button.b{
-  /* background-color: #333333; */
-  background-color: #00cbca;
+  background-color: #333333;
+  /* background-color: #00cbca; */
 }
 
 #tip{
